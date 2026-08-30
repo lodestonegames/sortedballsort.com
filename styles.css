@@ -27,6 +27,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--ink);
   background:
     radial-gradient(circle at 82% 6%, rgb(79 195 247 / 13%), transparent 28rem),
@@ -80,6 +81,8 @@ nav a { color: var(--muted); text-decoration: none; font-weight: 700; }
 nav a:hover, nav a:focus-visible { color: var(--cyan); }
 
 .hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr);
   gap: clamp(42px, 7vw, 90px);
@@ -89,6 +92,29 @@ nav a:hover, nav a:focus-visible { color: var(--cyan); }
   margin: 0 auto;
   padding: 54px 0 86px;
 }
+
+.hero-backdrop {
+  position: absolute;
+  z-index: -2;
+  inset: 10px -54px 28px;
+  border: 1px solid rgb(92 146 186 / 18%);
+  border-radius: 46px;
+  background:
+    linear-gradient(90deg, rgb(7 17 29 / 82%) 0%, rgb(7 17 29 / 42%) 45%, rgb(7 17 29 / 2%) 80%),
+    url("/assets/celebration-backdrop-v2.webp") 50% 50% / cover no-repeat;
+  box-shadow: 0 34px 100px rgb(0 0 0 / 28%);
+  opacity: .88;
+  overflow: hidden;
+}
+
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 58%, var(--bg) 100%);
+}
+
+.hero-copy { position: relative; z-index: 3; }
 
 .eyebrow {
   margin: 0 0 12px;
@@ -149,8 +175,20 @@ h1 span { color: var(--pink); }
 .play-mark { width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 22px solid var(--green); filter: drop-shadow(-5px 0 0 var(--cyan)); }
 .platform-note { margin: 14px 0 0; color: var(--muted); font-size: .88rem; }
 
-.hero-visual { position: relative; display: grid; place-items: center; min-height: 620px; }
-.hero-visual::before { content: ""; position: absolute; inset: 12% 3%; border-radius: 50%; background: radial-gradient(circle, rgb(79 195 247 / 24%), transparent 68%); filter: blur(8px); }
+.hero-visual { position: relative; display: grid; place-items: center; min-height: 650px; }
+.hero-visual::before { content: ""; position: absolute; inset: 7% -8% 3%; border-radius: 50%; background: radial-gradient(circle, rgb(255 205 75 / 30%), rgb(79 195 247 / 17%) 36%, transparent 68%); filter: blur(8px); }
+
+.celebration-ring {
+  position: absolute;
+  width: min(520px, 96%);
+  aspect-ratio: 1;
+  border: 1px solid rgb(255 217 102 / 18%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 24px rgb(79 195 247 / 4%),
+    0 0 0 62px rgb(255 76 144 / 3%),
+    inset 0 0 70px rgb(255 205 75 / 9%);
+}
 
 .phone-frame {
   position: relative;
@@ -165,6 +203,16 @@ h1 span { color: var(--pink); }
 }
 
 .phone-frame img { display: block; width: 100%; height: auto; border-radius: 33px; }
+
+.hero-phone {
+  width: min(390px, 78vw);
+  border-color: #7998b7;
+  box-shadow:
+    0 38px 90px rgb(0 0 0 / 48%),
+    0 0 55px rgb(255 208 82 / 14%),
+    inset 0 0 0 3px #111b28;
+  transform: rotate(2.5deg) translateY(4px);
+}
 
 .proof-chip {
   position: absolute;
@@ -184,6 +232,24 @@ h1 span { color: var(--pink); }
 .chip-one { top: 18%; left: -2%; transform: rotate(-3deg); }
 .chip-two { right: -3%; bottom: 17%; transform: rotate(3deg); }
 
+.fanfare-chip {
+  position: absolute;
+  z-index: 3;
+  right: 2%;
+  top: 8%;
+  display: grid;
+  gap: 3px;
+  padding: 12px 16px;
+  border: 1px solid rgb(255 217 102 / 34%);
+  border-radius: 16px;
+  color: #fff3ba;
+  background: linear-gradient(145deg, rgb(92 65 19 / 92%), rgb(35 28 23 / 94%));
+  box-shadow: 0 18px 45px rgb(0 0 0 / 38%);
+  transform: rotate(3deg);
+}
+.fanfare-chip span { color: var(--gold); font-size: .75rem; letter-spacing: .14em; }
+.fanfare-chip strong { font: 600 .88rem/1.2 "Fredoka", sans-serif; }
+
 .trust-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -199,6 +265,79 @@ h1 span { color: var(--pink); }
 .trust-strip div + div { border-left: 1px solid var(--panel-border); }
 .trust-strip strong { font-family: "Fredoka", sans-serif; }
 .trust-strip span { color: var(--muted); font-size: .82rem; }
+
+.celebration-section {
+  display: grid;
+  grid-template-columns: minmax(380px, .95fr) minmax(0, 1.05fr);
+  gap: clamp(42px, 7vw, 90px);
+  align-items: center;
+  padding-top: 94px;
+  padding-bottom: 94px;
+}
+
+.celebration-showcase {
+  position: relative;
+  min-height: 650px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(77 112 145 / 45%);
+  border-radius: 34px;
+  background:
+    linear-gradient(180deg, rgb(8 17 29 / 18%), rgb(8 17 29 / 88%)),
+    url("/assets/celebration-backdrop-v2.webp") 68% 50% / cover no-repeat;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.celebration-showcase::after {
+  content: "";
+  position: absolute;
+  inset: auto 8% 3%;
+  height: 24%;
+  border-radius: 50%;
+  background: rgb(255 201 74 / 18%);
+  filter: blur(32px);
+}
+
+.celebration-screen {
+  position: relative;
+  z-index: 2;
+  width: min(318px, 72%);
+  padding: 8px;
+  border: 1px solid #7695b4;
+  border-radius: 40px;
+  background: #02060b;
+  box-shadow: 0 32px 70px rgb(0 0 0 / 55%), inset 0 0 0 2px #172536;
+  transform: rotate(-3deg);
+}
+
+.celebration-screen img { display: block; width: 100%; height: auto; border-radius: 32px; }
+
+.celebration-badge {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 11px 15px;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 999px;
+  background: rgb(20 34 52 / 92%);
+  box-shadow: 0 16px 35px rgb(0 0 0 / 35%);
+  backdrop-filter: blur(10px);
+  font: 600 .9rem/1 "Fredoka", sans-serif;
+}
+
+.celebration-badge span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; color: #07111d; }
+.badge-praise { left: 5%; top: 16%; transform: rotate(-5deg); }
+.badge-praise span { background: var(--green); }
+.badge-reward { right: 4%; bottom: 16%; transform: rotate(5deg); }
+.badge-reward span { background: var(--gold); }
+
+.celebration-copy > p:not(.eyebrow) { max-width: 650px; color: #bdccdc; font-size: 1.08rem; }
+
+.reward-notes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.reward-notes span { padding: 9px 13px; border: 1px solid rgb(79 195 247 / 24%); border-radius: 999px; color: #d5e9f8; background: rgb(79 195 247 / 8%); font-size: .83rem; font-weight: 800; }
 
 .section { width: min(1160px, calc(100% - 40px)); margin: 0 auto; padding: 112px 0; }
 .section-heading { max-width: 780px; margin-bottom: 42px; }
@@ -282,6 +421,7 @@ footer p { grid-column: 1 / -1; margin: 0; font-size: .78rem; }
 @media (max-width: 960px) {
   .hero { grid-template-columns: 1fr 390px; gap: 26px; }
   .proof-chip { display: none; }
+  .fanfare-chip { right: -1%; }
   .feature-grid { grid-template-columns: repeat(2, 1fr); }
   .final-cta { grid-template-columns: auto 1fr; }
   .final-cta .store-actions { grid-column: 1 / -1; justify-content: flex-start; }
@@ -290,14 +430,20 @@ footer p { grid-column: 1 / -1; margin: 0; font-size: .78rem; }
 @media (max-width: 760px) {
   .site-header nav { display: none; }
   .hero { display: flex; flex-direction: column; min-height: 0; padding-top: 56px; }
+  .hero-backdrop { inset: 14px -10px 18px; background-position: 66% 50%; }
   .hero-copy { text-align: center; }
   .hero-copy .store-actions { justify-content: center; }
-  .hero-visual { min-height: 550px; }
+  .hero-visual { width: 100%; min-height: 600px; }
+  .hero-visual::before { inset: 7% 0 3%; }
+  .fanfare-chip { right: 4%; top: 6%; }
   .trust-strip { grid-template-columns: repeat(2, 1fr); }
   .trust-strip div:nth-child(3) { border-left: 0; border-top: 1px solid var(--panel-border); }
   .trust-strip div:nth-child(4) { border-top: 1px solid var(--panel-border); }
   .ad-timeline { grid-template-columns: 1fr; }
   .step { margin-bottom: 22px; }
+  .celebration-section { grid-template-columns: 1fr; }
+  .celebration-copy { order: -1; text-align: center; }
+  .reward-notes { justify-content: center; }
   .solvable-section { grid-template-columns: 1fr; }
   .code-proof { order: -1; }
   .final-cta { text-align: center; grid-template-columns: 1fr; justify-items: center; padding: 28px 22px; }
@@ -312,9 +458,16 @@ footer p { grid-column: 1 / -1; margin: 0; font-size: .78rem; }
   .hero { padding-bottom: 58px; }
   .store-actions { display: grid; width: 100%; }
   .store-button { width: 100%; }
-  .hero-visual { min-height: 500px; }
+  .hero-visual { min-height: 535px; }
   .phone-frame { width: min(310px, 82vw); }
+  .hero-phone { width: min(320px, 82vw); }
+  .fanfare-chip { right: 0; top: 2%; padding: 10px 13px; }
   .section { padding: 82px 0; }
+  .celebration-showcase { min-height: 560px; }
+  .celebration-screen { width: min(286px, 76%); }
+  .celebration-badge { font-size: .78rem; }
+  .badge-praise { left: 2%; }
+  .badge-reward { right: 1%; }
   .trust-strip { grid-template-columns: 1fr; }
   .trust-strip div + div { border-top: 1px solid var(--panel-border); border-left: 0; }
   .feature-grid { grid-template-columns: 1fr; }

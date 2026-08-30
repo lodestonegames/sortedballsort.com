@@ -23,7 +23,8 @@
 
   <link rel="icon" href="/assets/sorted-icon.webp" type="image/webp">
   <link rel="preload" href="/assets/fredoka-semibold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="/assets/sorted-gameplay.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="/assets/celebration-backdrop-v2.webp" as="image" type="image/webp">
+  <link rel="preload" href="/assets/level-complete-celebration-v2.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="/styles.css">
 
   <script type="application/ld+json">
@@ -36,7 +37,8 @@
     "url": "https://sortedballsort.com/",
     "image": "https://sortedballsort.com/assets/sorted-icon.webp",
     "screenshot": [
-      "https://sortedballsort.com/assets/sorted-gameplay.webp",
+      "https://sortedballsort.com/assets/level-complete-celebration-v2.webp",
+      "https://sortedballsort.com/assets/tube-celebration-v2.webp",
       "https://sortedballsort.com/assets/sorted-colorblind.webp"
     ],
     "applicationCategory": "GameApplication",
@@ -84,6 +86,7 @@
     </a>
     <nav>
       <a href="#ads">Ads</a>
+      <a href="#celebration">Celebration</a>
       <a href="#solvable">Solvability</a>
       <a href="#questions">Questions</a>
     </nav>
@@ -91,6 +94,7 @@
 
   <main id="main">
     <section class="hero">
+      <div class="hero-backdrop" aria-hidden="true"></div>
       <div class="hero-copy">
         <p class="eyebrow">The official Sorted app by Tom Appleton</p>
         <h1>Love ball sort.<br><span>Hate the ad spam?</span></h1>
@@ -108,12 +112,14 @@
         <p class="platform-note">Free on iPhone, iPad and Android · Plays offline</p>
       </div>
 
-      <div class="hero-visual" aria-label="Sorted gameplay showing coloured balls in tubes">
-        <div class="phone-frame">
-          <img src="/assets/sorted-gameplay.webp" width="540" height="960" alt="A level in Sorted with coloured balls being organised into glass tubes" fetchpriority="high">
+      <div class="hero-visual" aria-label="Sorted celebrating a perfectly completed ball-sort level">
+        <div class="celebration-ring" aria-hidden="true"></div>
+        <div class="phone-frame hero-phone">
+          <img src="/assets/level-complete-celebration-v2.webp" width="700" height="1244" alt="Sorted level 15 complete with three gold stars, Perfect praise, a five-win streak and falling confetti" fetchpriority="high">
         </div>
         <div class="proof-chip chip-one"><strong>7 days</strong><span>with no forced ads</span></div>
         <div class="proof-chip chip-two"><strong>5,000</strong><span>levels pre-verified</span></div>
+        <div class="fanfare-chip"><span aria-hidden="true">★ ★ ★</span><strong>Every win gets its moment</strong></div>
       </div>
     </section>
 
@@ -122,6 +128,27 @@
       <div><strong>Free undo</strong><span>no coins or adverts</span></div>
       <div><strong>No paid boosters</strong><span>or level skips</span></div>
       <div><strong>Works offline</strong><span>no Wi-Fi needed</span></div>
+    </section>
+
+    <section class="section celebration-section" id="celebration">
+      <div class="celebration-showcase">
+        <div class="celebration-screen">
+          <img src="/assets/tube-celebration-v2.webp" width="700" height="1244" alt="A completed cyan tube glowing as colourful curled confetti flies across a real Sorted puzzle" loading="lazy">
+        </div>
+        <div class="celebration-badge badge-praise"><span>✓</span><strong>Nice sort!</strong></div>
+        <div class="celebration-badge badge-reward"><span>★</span><strong>Perfect clear</strong></div>
+      </div>
+      <div class="celebration-copy">
+        <p class="eyebrow">Calm play. Proper payoff.</p>
+        <h2>Sorting should feel satisfying.</h2>
+        <p>Sorted keeps the puzzle focused, then makes the win land: glowing completed tubes, praise, crisp haptics, colourful ribbons and falling confetti.</p>
+        <p>Finish a level and three staged stars, best-move feedback, win streaks and score count-ups turn a tidy board into a proper little celebration.</p>
+        <div class="reward-notes" aria-label="Celebration features">
+          <span>Glowing tube finishes</span>
+          <span>Praise and haptics</span>
+          <span>Three-star level payoff</span>
+        </div>
+      </div>
     </section>
 
     <section class="section ads-section" id="ads">
