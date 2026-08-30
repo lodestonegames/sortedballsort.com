@@ -147,32 +147,23 @@ h1 span { color: var(--pink); }
   font-size: clamp(1.08rem, 2vw, 1.3rem);
 }
 
-.store-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.store-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
-.store-button {
+.store-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 190px;
-  min-height: 62px;
-  gap: 12px;
-  padding: 9px 18px;
-  border: 1px solid #53657a;
-  border-radius: 14px;
-  color: #fff;
-  background: #05080c;
-  box-shadow: 0 10px 28px rgb(0 0 0 / 28%);
-  text-decoration: none;
-  font-size: 1.24rem;
-  font-weight: 650;
-  line-height: 1.05;
-  transition: transform .16s ease, border-color .16s ease;
+  min-height: 64px;
+  border-radius: 12px;
+  line-height: 0;
+  transition: transform .16s ease, filter .16s ease;
 }
 
-.store-button:hover, .store-button:focus-visible { transform: translateY(-2px); border-color: var(--cyan); }
-.store-button small { display: block; margin-bottom: 3px; font-size: .68rem; font-weight: 500; letter-spacing: .02em; }
-.store-mark { font-size: 1.7rem; }
-.play-mark { width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 22px solid var(--green); filter: drop-shadow(-5px 0 0 var(--cyan)); }
+.store-badge:hover, .store-badge:focus-visible { transform: translateY(-2px); filter: drop-shadow(0 10px 18px rgb(0 0 0 / 34%)); }
+.store-badge:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+.store-badge img { display: block; height: auto; }
+.apple-badge img { width: 180px; }
+.play-badge img { width: 202px; }
 .platform-note { margin: 14px 0 0; color: var(--muted); font-size: .88rem; }
 
 .hero-visual { position: relative; display: grid; place-items: center; min-height: 650px; }
@@ -360,6 +351,12 @@ h2 { margin-bottom: 18px; font-size: clamp(2.3rem, 4.4vw, 4rem); letter-spacing:
 
 .honest-note { margin-top: 20px; padding: 18px 22px; border-left: 4px solid var(--gold); border-radius: 10px; color: #c7d4e2; background: #111e2e; }
 .honest-note strong { color: var(--gold); }
+.price-proof { margin: 16px 0 0; color: #aebfd1; font-size: .9rem; }
+.price-proof strong { color: #dfeaf5; }
+.ad-cta { display: flex; gap: 24px; align-items: center; justify-content: space-between; margin-top: 28px; padding: 22px 24px; border: 1px solid rgb(99 211 92 / 26%); border-radius: 20px; background: linear-gradient(135deg, rgb(27 53 58 / 88%), rgb(17 30 48 / 96%)); }
+.ad-cta > div:first-child { display: grid; gap: 3px; }
+.ad-cta > div:first-child strong { font: 600 1.25rem/1.2 "Fredoka", sans-serif; }
+.ad-cta > div:first-child span { color: var(--muted); font-size: .9rem; }
 
 .solvable-section { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr); gap: clamp(46px, 8vw, 100px); align-items: center; }
 .verification-list { display: grid; gap: 18px; margin: 32px 0; padding: 0; list-style: none; counter-reset: proof; }
@@ -399,7 +396,7 @@ h2 { margin-bottom: 18px; font-size: clamp(2.3rem, 4.4vw, 4rem); letter-spacing:
   background: linear-gradient(135deg, #1d344e, #18243a 70%);
   box-shadow: var(--shadow);
 }
-.final-cta img { border-radius: 24px; }
+.final-cta > img { border-radius: 24px; }
 .final-cta h2 { margin-bottom: 8px; font-size: clamp(2rem, 3.5vw, 3.2rem); }
 .final-cta p:not(.eyebrow) { margin: 0; color: var(--muted); }
 .final-cta .store-actions { justify-content: flex-end; }
@@ -444,6 +441,7 @@ footer p { grid-column: 1 / -1; margin: 0; font-size: .78rem; }
   .celebration-section { grid-template-columns: 1fr; }
   .celebration-copy { order: -1; text-align: center; }
   .reward-notes { justify-content: center; }
+  .ad-cta { align-items: flex-start; flex-direction: column; }
   .solvable-section { grid-template-columns: 1fr; }
   .code-proof { order: -1; }
   .final-cta { text-align: center; grid-template-columns: 1fr; justify-items: center; padding: 28px 22px; }
@@ -457,7 +455,7 @@ footer p { grid-column: 1 / -1; margin: 0; font-size: .78rem; }
   h1 { font-size: clamp(2.8rem, 15vw, 4.3rem); }
   .hero { padding-bottom: 58px; }
   .store-actions { display: grid; width: 100%; }
-  .store-button { width: 100%; }
+  .store-badge { width: 100%; }
   .hero-visual { min-height: 535px; }
   .phone-frame { width: min(310px, 82vw); }
   .hero-phone { width: min(320px, 82vw); }
@@ -477,5 +475,5 @@ footer p { grid-column: 1 / -1; margin: 0; font-size: .78rem; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .store-button { transition: none; }
+  .store-badge { transition: none; }
 }
